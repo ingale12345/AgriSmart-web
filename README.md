@@ -1,54 +1,83 @@
-# React + TypeScript + Vite
+# 🌿 AgriSmart
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+AgriSmart is a responsive, modern dashboard application built for managing agriculture operations. It helps track orders, monitor customer activity, analyze revenue trends, and manage crop and product data with ease.
 
-Currently, two official plugins are available:
+## 📸 Screenshot
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![Dashboard Screenshot](./screenshot.png)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🚀 Features
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- 📦 Total Orders, Revenue, Customers & Active Crops
+- 📊 Top Products Analysis with Progress Indicators
+- 📋 Recent Orders Table with Order Status
+- 🧩 Reusable Card & Layout Components
+- 💡 Built using shadcn/ui, TailwindCSS, and React
+- 📱 Fully responsive and mobile-ready
+
+---
+
+## 🧪 Tech Stack
+
+| Technology   | Purpose                          |
+| ------------ | -------------------------------- |
+| React        | UI Framework                     |
+| TypeScript   | Static Typing                    |
+| shadcn/ui    | UI Components (Radix + Tailwind) |
+| TailwindCSS  | Utility-first Styling            |
+| Lucide Icons | Iconography                      |
+| Vite / CRA   | Build Tool (choose one)          |
+
+---
+
+## 📁 Project Structure
+
+```
+AgriSmart-web/
+├── public/ # Static files
+├── src/
+│ ├── components/ # Reusable UI Components
+│ ├── pages/ # Page-level components (Dashboard, etc.)
+│ ├── layout/ # Layout and wrappers (PageWrapper, etc.)
+│ ├── App.tsx # App entry point
+│ ├── main.tsx # ReactDOM entry
+│ └── index.css # TailwindCSS & global styles
+├── tailwind.config.js
+├── tsconfig.json
+├── package.json
+└── README.md
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## ⚙️ Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 1. Clone the repo
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+git clone https://github.com/ingale12345/AgriSmart-web.git
+cd AgriSmart-web
 ```
+
+### 2. Install dependencies
+```
+npm install
+or 
+yarn install
+```
+### 3. Start the development server
+```
+npm run dev
+# or
+yarn dev
+```
+
+🧑‍💻 Author
+Made with 💚 by @ingale12345
+
+### 📌 Future Enhancements
+ ###### API integration for real data
+
+ ###### User authentication and roles
+
+ ###### Export reports (PDF/Excel)
