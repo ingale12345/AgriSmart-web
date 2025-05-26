@@ -121,7 +121,7 @@ export function RecentOrders() {
         {orders.map((order) => (
           <div
             key={order.id}
-            className="grid grid-cols-5 text-sm hover:scale-103 cursor-pointer duration-50 hover:font-semibold items-center py-2 border-b last:border-b-0"
+            className="grid grid-cols-5 text-sm hover:scale-101 cursor-pointer duration-50 hover:font-semibold items-center py-2 border-b last:border-b-0"
           >
             <span>{order.id}</span>
             <span>{order.customer}</span>

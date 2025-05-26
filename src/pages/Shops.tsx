@@ -1,5 +1,7 @@
+import { ShopList } from "./shops/ShopList";
+
 function Shops() {
-  return <div>Shops</div>;
+  return <ShopList />;
 }
 
 export default Shops;
