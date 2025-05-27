@@ -18,8 +18,9 @@ import GeoTags from "./pages/GeoTags";
 import Users from "./pages/Users";
 import Login from "./pages/Login";
 import PageWrapper from "./components/PageWrapper";
-
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 function App() {
+  const queryClient = new QueryClient();
   const router = createBrowserRouter([
     {
       path: "/",
@@ -107,7 +108,9 @@ function App() {
   ]);
   return (
     <ThemeProvider>
-      <RouterProvider router={router} />
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
     </ThemeProvider>
   );
 }
