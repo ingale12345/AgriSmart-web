@@ -1,7 +1,3 @@
-import { useEffect, useState } from "react";
-import { getShops, addShop, deleteShop, updateShop } from "./api";
-import type { Shop } from "./api";
-import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -10,61 +6,42 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { ShopFormDialog } from "./ShopFormDialog";
+import { useGetProducts } from "@/api/products/product.hook";
 
 export function ShopList() {
-  const [data, setData] = useState<Shop[]>([]);
-
-  const load = async () => setData(await getShops());
-  useEffect(() => void load(), []);
-
-  const handleCreate = async (shop: Omit<Shop, "id">) => {
-    await addShop(shop);
-    load();
-  };
-
-  const handleUpdate = async (updated: Shop) => {
-    await updateShop(updated);
-    load();
-  };
-
-  const handleDelete = async (id: number) => {
-    if (confirm("Are you sure?")) {
-      await deleteShop(id);
-      load();
-    }
-  };
+  const { data } = useGetProducts();
 
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-center">
-        <ShopFormDialog onSubmit={handleCreate} />
+        {/* <ShopFormDialog onSubmit={handleCreate} /> */}
       </div>
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Name</TableHead>
-            <TableHead>Location</TableHead>
-            <TableHead className="text-right">Actions</TableHead>
+            <TableHead>Ttitle</TableHead>
+            <TableHead>Brand</TableHead>
+            <TableHead>Category</TableHead>
+            <TableHead>discountPercentage</TableHead>
+            <TableHead>description</TableHead>
+            <TableHead>price</TableHead>
+            <TableHead>rating</TableHead>
+
+            {/* <TableHead className="text-right">Actions</TableHead> */}
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data.map((shop) => (
-            <TableRow key={shop.id}>
-              <TableCell>{shop.name}</TableCell>
-              <TableCell>{shop.location}</TableCell>
-              <TableCell className="text-right space-x-2">
-                <ShopFormDialog
-                  initial={shop}
-                  onSubmit={(form) => handleUpdate({ ...shop, ...form })}
-                />
-                <Button
-                  variant="destructive"
-                  onClick={() => handleDelete(shop.id)}
-                >
-                  Delete
-                </Button>
+          {data?.products.map((product: any) => (
+            <TableRow key={product.id}>
+              <TableCell className="py-2">{product.title}</TableCell>
+              <TableCell className="py-2">{product.brand}</TableCell>
+              <TableCell className="py-2">{product.category}</TableCell>
+              <TableCell className="py-2">
+                {product.discountPercentage}
               </TableCell>
+              <TableCell className="py-2">{product.description}</TableCell>
+              <TableCell className="py-2">{product.price}</TableCell>
+              <TableCell className="py-2">{product.rating}</TableCell>
             </TableRow>
           ))}
         </TableBody>
