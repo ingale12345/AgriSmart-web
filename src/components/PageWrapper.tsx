@@ -1,14 +1,17 @@
-import { PageHeader } from "./PageHeader";
-
-type PageWrapperProps = {
-  title: string;
+import { cn } from "@/lib/utils";
+import { PageHeader, type PageHeaderProps } from "./PageHeader";
+type PageWrapperProps = PageHeaderProps & {
   children: React.ReactNode;
+  wrapperClassName?: string;
 };
-
-function PageWrapper({ title, children }: PageWrapperProps) {
+function PageWrapper({
+  children,
+  wrapperClassName = "",
+  ...rest
+}: PageWrapperProps) {
   return (
-    <div className="p-6 space-y-6">
-      <PageHeader title={title} />
+    <div className={cn("p-6 space-y-6", wrapperClassName)}>
+      <PageHeader {...rest} />
       {children}
     </div>
   );
