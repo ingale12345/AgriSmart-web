@@ -7,7 +7,7 @@ import {
   Sun,
   User,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import {
   DropdownMenu,
@@ -19,6 +19,11 @@ import {
 } from "./ui/dropdown-menu";
 import { useTheme, type Theme } from "./theme-provider";
 
+export type ProfileMenuItems = {
+  icon: React.ReactElement<any, any>;
+  label: string;
+  onClick: () => void;
+};
 function Navbar({
   isSideBarOpen,
   setSideBarOpen,
@@ -27,19 +32,27 @@ function Navbar({
   setSideBarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const { setTheme } = useTheme();
+  const navigate = useNavigate();
   const Icon = isSideBarOpen ? PanelLeftClose : PanelRightClose;
-  const profileMenuItems = [
+  const handleLogout = () => {
+    sessionStorage.clear();
+    navigate("/"); // or window.location.href = "/";
+  };
+  const profileMenuItems: ProfileMenuItems[] = [
     {
       icon: <User className="h-[1.2rem] w-[1.2rem] mr-2" />,
       label: "Profile",
+      onClick: () => {},
     },
     {
       icon: <Settings className="h-[1.2rem] w-[1.2rem] mr-2" />,
       label: "Settings",
+      onClick: () => {},
     },
     {
       icon: <LogOut className="h-[1.2rem] w-[1.2rem] mr-2" />,
       label: "Logout",
+      onClick: handleLogout,
     },
   ];
   const themeMenuItems: Theme[] = ["light", "dark", "system"];
@@ -84,8 +97,9 @@ function Navbar({
           <DropdownMenuContent sideOffset={10}>
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            {profileMenuItems.map(({ icon, label }) => (
+            {profileMenuItems.map(({ icon, label, onClick }) => (
               <DropdownMenuItem
+                onClick={onClick}
                 className="cursor-pointer"
                 variant={`${label === "Logout" ? "destructive" : "default"}`}
               >

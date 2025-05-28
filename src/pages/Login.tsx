@@ -3,17 +3,25 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Sprout } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLogin } from "@/api/auth/authHooks";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { mutate: login, isPending, error } = useLogin();
   const navigate = useNavigate();
+  const token = sessionStorage.getItem("token");
+
+  useEffect(() => {
+    if (token) {
+      navigate("/agri-smart", { replace: true });
+    }
+  }, [token, navigate]);
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    navigate("agri-smart");
-    // your login logic
+    login({ email, password });
   };
 
   return (
@@ -62,11 +70,14 @@ export default function Login() {
                 />
               </div>
               <Button
+                variant="destructive"
                 type="submit"
-                className="w-full bg-green-600 hover:bg-green-700"
+                className="w-full "
+                disabled={isPending}
               >
                 Login
               </Button>
+              {error && <p>Login failed</p>}
             </form>
             <p className="text-sm text-center mt-4 text-muted-foreground">
               Don’t have an account?{" "}
