@@ -1,4 +1,3 @@
-import { PageHeader } from "@/components/PageHeader";
 import { RecentOrders } from "@/components/RecentOrders";
 import { StatCard } from "@/components/StatCard";
 import { TopProducts } from "@/components/TopProducts";
@@ -43,7 +42,8 @@ function Home() {
           changeType="up"
           changeText="from last season"
           iconBg="bg-yellow-100"
-        /><StatCard
+        />
+        <StatCard
           icon={<Leaf className="text-yellow-600" />}
           label="Active Crops"
           value="18"
