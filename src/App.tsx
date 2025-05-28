@@ -59,7 +59,10 @@ function App() {
             {
               path: "shops",
               element: (
-                <PageWrapper title="Shops">
+                <PageWrapper
+                  title="Shops"
+                  // titleClassName="flex w-full "
+                >
                   <Shops />
                 </PageWrapper>
               ),

@@ -1,20 +1,34 @@
 import { cn } from "@/lib/utils";
-import { PageHeader, type PageHeaderProps } from "./PageHeader";
-type PageWrapperProps = PageHeaderProps & {
+
+export type PageSectionProps = {
+  title: string | React.ReactNode;
   children: React.ReactNode;
-  wrapperClassName?: string;
+  className?: string; // unified className
+  titleClassName?: string;
 };
-function PageWrapper({
+
+export default function PageWrapper({
+  title,
   children,
-  wrapperClassName = "",
-  ...rest
-}: PageWrapperProps) {
+  className = "",
+  titleClassName = "",
+}: PageSectionProps) {
+  console.log("className is ", className);
   return (
-    <div className={cn("p-6 space-y-6", wrapperClassName)}>
-      <PageHeader {...rest} />
+    <div className={cn("p-6", className)}>
+      {typeof title === "string" ? (
+        <span
+          className={cn(
+            "flex mb-6 text-3xl font-bold tracking-tight w-full  text-start",
+            titleClassName
+          )}
+        >
+          {title}
+        </span>
+      ) : (
+        title
+      )}
       {children}
     </div>
   );
 }
-
-export default PageWrapper;
