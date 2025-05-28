@@ -5,7 +5,7 @@ export default function ProtectedRoute() {
   const { isLoggedIn } = useAuth();
 
   if (!isLoggedIn) {
-    return <Navigate tosrc/pages/shops/api.ts replace />;
+    return <Navigate to="/" replace />;
   }
 
   return <Outlet />;
