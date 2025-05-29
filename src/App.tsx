@@ -7,14 +7,18 @@ import PageWrapper from "./components/PageWrapper";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import ProtectedRoute from "./ProtectedRoute";
 import { agriSmartRoutes } from "@/routes";
+import { Toaster } from "sonner";
+
 function App() {
   const queryClient = new QueryClient();
   const agriSmartRoutesChildren = agriSmartRoutes.map(
-    ({ index, path, element, isWrapped = true, title }) => ({
+    ({ index, path, element, isWrapped = true, title, ...rest }) => ({
       ...(index ? { index: true } : { path }),
       element:
         isWrapped !== false ? (
-          <PageWrapper title={title ?? ""}>{element}</PageWrapper>
+          <PageWrapper title={title ?? ""} {...rest}>
+            {element}
+          </PageWrapper>
         ) : (
           element
         ),
@@ -40,6 +44,7 @@ function App() {
     <ThemeProvider>
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
+        <Toaster richColors position="top-right" />{" "}
       </QueryClientProvider>
     </ThemeProvider>
   );
