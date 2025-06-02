@@ -7,10 +7,11 @@ import axiosInstance from "@/api";
 import type { ShopFormData } from "@/types"; // ensure this type is defined as shown below
 import { PlusCircle } from "lucide-react";
 import { toast } from "sonner";
+import { useState } from "react";
 
 const CreateShop = () => {
   const queryClient = useQueryClient();
-
+  const [openSheet, setOpenSheet] = useState<boolean>(false);
   const { register, handleSubmit, reset } = useForm<ShopFormData>();
 
   const createShop = useMutation({
@@ -25,6 +26,7 @@ const CreateShop = () => {
         description: "Your new shop has been added.",
         position: "top-center",
       });
+      setOpenSheet(false);
     },
     onError: (error) => {
       toast.error("Shop creation Error", {
@@ -43,7 +45,7 @@ const CreateShop = () => {
   };
 
   return (
-    <Sheet>
+    <Sheet open={openSheet} onOpenChange={setOpenSheet}>
       <SheetTrigger asChild>
         <PlusCircle size={24} className="cursor-pointer" />
       </SheetTrigger>
