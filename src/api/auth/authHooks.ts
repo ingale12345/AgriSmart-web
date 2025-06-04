@@ -7,7 +7,7 @@ export const useLogin = () => {
   const navigate = useNavigate();
   return useMutation({
     mutationFn: loginUser,
-    onSuccess: ({ accessToken, users: user }) => {
+    onSuccess: ({ accessToken, user }) => {
       saveAuthToStorage(accessToken, user);
       navigate("agri-smart");
     },

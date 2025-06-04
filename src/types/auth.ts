@@ -16,7 +16,7 @@ export type AuthResponse = {
       jti: string;
     };
   };
-  users: {
+  user: {
     _id: string;
     email: string;
     name: string;

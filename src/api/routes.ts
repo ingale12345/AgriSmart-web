@@ -1,7 +1,7 @@
 // src/api/routes.ts
 const API_ROUTES = {
   AUTH: {
-    LOGIN: "authentication",
+    LOGIN: "auth/signin",
     REGISTER: "auth/register",
     LOGOUT: "auth/logout",
     REFRESH_TOKEN: "auth/refresh-token",
